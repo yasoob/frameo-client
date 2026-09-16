@@ -1,4 +1,5 @@
 /dist/
+/release-assets/
 /web/node_modules/
 /web/dist/
 /internal/server/ui/

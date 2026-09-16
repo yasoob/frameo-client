@@ -50,22 +50,25 @@ provides.
 
 ### Download the app
 
-Every push to `master` runs the [build workflow](.github/workflows/build.yml).
-Each executable artifact includes a SHA-256 checksum.
+Download from the [latest development release](../../releases/tag/development).
+It tracks successful builds of `master` and is marked as a prerelease.
+For fixed versions, [browse all releases](../../releases).
 
-1. Open the repository's **Actions** tab.
-2. Select a successful **Build binaries** run.
-3. Download the artifact for your operating system and processor.
-4. Extract the downloaded archive.
+1. Choose the executable for your operating system and processor.
+2. Download the executable and its matching `.sha256` file from the release assets.
 
-| Operating system | Processor | Executable |
+The direct links in this table always download the current development build.
+
+| Operating system | Processor | Development download |
 | --- | --- | --- |
-| macOS | Apple Silicon | `frameo-local-darwin-arm64` |
-| macOS | Intel | `frameo-local-darwin-amd64` |
-| Windows | Intel or AMD, 64-bit | `frameo-local-windows-amd64.exe` |
-| Windows | ARM, 64-bit | `frameo-local-windows-arm64.exe` |
-| Linux | Intel or AMD, 64-bit | `frameo-local-linux-amd64` |
-| Linux | ARM, 64-bit | `frameo-local-linux-arm64` |
+| macOS | Apple Silicon | [frameo-local-darwin-arm64](../../releases/download/development/frameo-local-darwin-arm64) |
+| macOS | Intel | [frameo-local-darwin-amd64](../../releases/download/development/frameo-local-darwin-amd64) |
+| Windows | Intel or AMD, 64-bit | [frameo-local-windows-amd64.exe](../../releases/download/development/frameo-local-windows-amd64.exe) |
+| Windows | ARM, 64-bit | [frameo-local-windows-arm64.exe](../../releases/download/development/frameo-local-windows-arm64.exe) |
+| Linux | Intel or AMD, 64-bit | [frameo-local-linux-amd64](../../releases/download/development/frameo-local-linux-amd64) |
+| Linux | ARM, 64-bit | [frameo-local-linux-arm64](../../releases/download/development/frameo-local-linux-arm64) |
+
+Each release also includes a combined `SHA256SUMS` file.
 
 ### Start the app
 

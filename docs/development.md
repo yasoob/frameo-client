@@ -160,17 +160,65 @@ See [capture instructions and image sources](screenshots/README.md).
 
 ## Continuous integration
 
-The [build workflow](../.github/workflows/build.yml) runs on every push to `master`.
-You can also start it from the repository's **Actions** tab.
+The [build workflow](../.github/workflows/build.yml) runs on pushes to `master`
+and tags that start with `v`. You can also start it from the **Actions** tab.
 
 The workflow:
 
 1. Builds the frontend.
 2. Runs Go checks, race detection, and browser tests.
 3. Builds all six executable targets in parallel.
-4. Uploads an artifact and SHA-256 checksum for each target.
+4. Verifies the binary checksums and publishes the release assets.
 
-CI uses synthetic data and does not require repository secrets.
+CI uses synthetic data. Publishing uses the built-in GitHub token; no custom
+repository secrets are required. Only the publishing job has `contents: write`.
+
+### Development releases
+
+A successful build of the current `master` commit updates the `development` tag
+and the **Latest development build** prerelease. The download URLs stay the same.
+Retries of older commits do not replace a newer development build.
+
+The release stays in draft while its files are updated. It is published after
+all six binaries, their checksum files, and `SHA256SUMS` have been uploaded.
+A failed upload leaves a draft that the next run can resume.
+
+The development tag and assets are intentionally mutable. Repository release
+immutability must allow updates to this channel.
+
+### Versioned releases
+
+To publish a fixed version, push a version tag. Replace `v0.2.2` with the version
+you want to publish.
+
+1. Tag the release commit:
+
+   ```sh
+   git tag -a v0.2.2 -m "Release v0.2.2"
+   ```
+
+2. Push the tag:
+
+   ```sh
+   git push origin v0.2.2
+   ```
+
+The workflow publishes a release for that tag after all checks and builds pass.
+Tags such as `v0.3.0-rc.1` produce prereleases. Stable version tags are eligible
+for GitHub's **Latest** release link; the development channel is not.
+
+Published versioned releases are not overwritten on reruns. Use a new version
+tag for changed files. Release notes compare with the previous versioned release,
+when available.
+
+CI embeds the version tag in the executable. Development builds report
+`development-` followed by the commit's short SHA.
+
+To test the publishing logic without calling GitHub:
+
+```sh
+node --test scripts/publish-release.test.mjs
+```
 
 ## Source layout
 

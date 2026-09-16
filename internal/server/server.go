@@ -32,6 +32,9 @@ import (
 //go:embed ui/*
 var frontend embed.FS
 
+// Version is set by the release build. Local source builds use development.
+var Version = "development"
+
 type Server struct {
 	Manager     *device.Manager
 	jobs        Jobs
@@ -104,7 +107,7 @@ func decode(w http.ResponseWriter, r *http.Request, v any) error {
 func (s *Server) routes() {
 	s.mux.HandleFunc("GET /api/bootstrap", func(w http.ResponseWriter, r *http.Request) {
 		_, name := s.Manager.Store.Identity()
-		respond(w, map[string]any{"token": s.token, "name": name, "frames": s.Manager.Store.Frames(), "version": "0.2.2"})
+		respond(w, map[string]any{"token": s.token, "name": name, "frames": s.Manager.Store.Frames(), "version": Version})
 	})
 	s.mux.HandleFunc("GET /api/discover", func(w http.ResponseWriter, r *http.Request) {
 		frames, e := s.Manager.Discover(r.Context(), true)
