@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "playwright test"
+    "test": "playwright test",
+    "screenshots": "npm run build && node scripts/screenshots.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
