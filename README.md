@@ -1,6 +1,6 @@
 # Frameo Local
 
-Send and manage photos on Frameo frames through your local network.
+Send and manage photos on Frameo frames through your local network. There are no 10 images at a time limit. You can send upto a 100 images at once for free. This is an alternative to the subscription version of Frameo app. The features in the current version are limited to what I personally need. But I can add support for more features if there is demand.
 
 The desktop app opens an interface in your browser. Each operating system and
 processor type has a separate executable. Downloaded executables do not require
