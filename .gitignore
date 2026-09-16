@@ -1,0 +1,24 @@
+/dist/
+/web/node_modules/
+/web/dist/
+/internal/server/ui/
+/test-results/
+*.log
+/web/*.tsbuildinfo
+
+# Local credentials, configuration, and OS metadata.
+device.json
+device.json.lock
+.state/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+
+# Browser diagnostics and generated test output.
+/web/test-results/
+/web/playwright-report/
+/playwright-report/
